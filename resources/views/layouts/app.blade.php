@@ -35,9 +35,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                        <li><a class="nav-link" href="{{route('akad')}}" >Calon</a> </li>
+                        <li><a class="nav-link" href="{{route('contract')}}" >Calon</a> </li>
                         <li><a class="nav-link" href="{{route('akad')}}" >Akad</a> </li>
-                        <li><a class="nav-link" href="{{route('akad')}}" >Transaction</a> </li>
+                        <li><a class="nav-link" href="{{route('transaction')}}" >Transaction</a> </li>
                         @endauth
                     </ul>
 

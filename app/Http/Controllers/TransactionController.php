@@ -8,6 +8,12 @@ use Validator;
 
 class TransactionController extends Controller
 {
+
+    public function index()
+    {
+        $transactions = Transaction::paginate(10);
+        return view('pages.transaction.index', compact('transactions'));
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
