@@ -9,6 +9,16 @@
                     <div class="card-header">Data Transactions</div>
 
                     <div class="card-body">
+                        <form  method="get" action="{{route('transaction')}}">
+                            <div class="row">
+                                <div class="input-group mb-2 mr-sm-2 col-md-6">
+                                    <input type="number" class="form-control" name="rekening_baru" id="inlineFormInputGroupUsername2" placeholder="Rekening Baru">
+                                    <div class="input-group-prepend">
+                                        <button class="input-group-text">Cari</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <table class="table table-bordered">
                             <thead>
                             <tr>

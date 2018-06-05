@@ -9,9 +9,9 @@ use Validator;
 class TransactionController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::paginate(10);
+        $transactions = Transaction::where('rekening_baru','LIKE', "%$request->rekening_baru%")->paginate(10);
         return view('pages.transaction.index', compact('transactions'));
     }
     public function store(Request $request)

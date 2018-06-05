@@ -9,14 +9,24 @@ use Illuminate\Http\Request;
 
 class AkadController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contracts = Akad::paginate(10);
+        $contracts = Akad::where('rekening_baru','LIKE', "%$request->rekening_baru%")->paginate(10);
         return view('pages.akad.index', compact('contracts'));
     }
 
     public function store(Request $request)
     {
+        /*Check panjang nik dan nomor registry*/
+        if(strlen($request->nik) != 16 || strlen($request->kode_bank) != 4){
+            return response()->json([
+                'error' => true,
+                'code' => '03',
+                'message' => 'Format Data Tidak Sesuai'
+            ]);
+        }
+
+        /*Check Duplikasi Nik*/
         $checkNik = $this->checkNik($request->nik);
         if (!$checkNik) {
             return response()->json([

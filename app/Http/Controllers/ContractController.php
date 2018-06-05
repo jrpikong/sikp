@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
-    public function index() {
-        $contracts = Contract::paginate(10);
+    public function index(Request $request) {
+        $contracts = Contract::where('nik','LIKE',"%$request->nik%")->paginate(10);
         return view('pages.contract.index', compact('contracts'));
     }
 

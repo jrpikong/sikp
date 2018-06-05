@@ -18,6 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('calon', function (Request $request) {
+    /*Check panjang nik dan nomor registry*/
+    if(strlen($request->nik) != 16 || strlen($request->nmr_registry) >= 15){
+        return response()->json([
+            'error' => true,
+            'code' => '03',
+            'message' => 'Format Data Tidak Sesuai'
+        ]);
+    }
+    /*Check Duplikasi Nik*/
     $nik = \App\Contract::where('nik', '=', $request->nik)->first();
     if ($nik) {
         return response()->json([
